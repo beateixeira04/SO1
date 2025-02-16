@@ -31,7 +31,3 @@ Example:
 Grading
 
     Grade: 18.86
-
-License
-
-MIT License
