@@ -1,106 +1,37 @@
 # SO1
 Primeiro projeto da cadeira de sistemas operativos - 2º ano de faculdade
 
-IST Key Value Store (IST-KVS)
+IST-KVS Project
+Overview
 
-Description
-
-IST-KVS is a key-value storage system that enables the creation, reading, and writing of key-value pairs. The system stores data in a hash table and supports concurrent access, synchronization, and non-blocking backups.
-
-This project was developed as part of the Operating Systems course for the 2024-25 academic year.
-
+The IST Key-Value Store (IST-KVS) is a system that stores data as key-value pairs, implemented as part of the Sistemas Operativos course (2024-25). It supports basic operations like WRITE, READ, DELETE, SHOW, WAIT, and BACKUP. The system uses a hashtable to manage data and includes optimizations for concurrent backups and parallel processing of multiple job files.
 Features
 
-Write: Store or update key-value pairs.
+    WRITE: Insert or update key-value pairs.
+    READ: Retrieve values for one or more keys.
+    DELETE: Remove one or more keys.
+    SHOW: List all key-value pairs.
+    WAIT: Introduce a delay between commands.
+    BACKUP: Create a backup using a non-blocking process.
 
-Read: Retrieve values associated with given keys.
+Usage
 
-Delete: Remove specific key-value pairs.
-
-Show: Display all stored key-value pairs in alphabetical order.
-
-Wait: Introduce delays for testing under load conditions.
-
-Backup: Create non-blocking backups using separate processes.
-
-Help: Display available commands and usage information.
-
-Input Format
-
-IST-KVS processes commands either interactively via standard input or in batch mode using .job files. Commands follow the format:
-
-WRITE [(key1,value1) (key2,value2) ...]
-
-READ [key1, key2, ...]
-
-DELETE [key1, key2, ...]
-
-SHOW
-
-WAIT <delay_ms>
-
-BACKUP
-
-HELP
-
-Comments can be added using # at the beginning of a line.
-
-Implementation Details
-
-Uses POSIX file descriptors for file operations.
-
-Implements synchronization mechanisms for concurrent access.
-
-Employs multi-threading to process multiple .job files in parallel.
-
-Utilizes fork() to create non-blocking backups.
-
-Compilation & Execution
-
-Compile with:
+    Build the project:
 
 make
 
-Run with:
+Run the program with:
 
-./ist-kvs <directory> <max_backups> <max_threads>
+    ./ist-kvs <directory_path> <max_concurrent_backups> <max_threads>
 
-<directory>: Path to the directory containing .job files.
+Example:
 
-<max_backups>: Maximum number of concurrent backups.
+./ist-kvs /path/to/jobs 2 4
 
-<max_threads>: Number of threads for processing .job files.
+Grading
 
-Example
+    Grade: 18.86
 
-Input (jobs/test.job):
+License
 
-# Read a non-existent key
-READ [key1]
-
-# Write key-value pairs
-WRITE [(key1,value1) (key2,value2)]
-
-# Read an existing key
-READ [key2]
-
-# Backup data
-BACKUP
-
-Execution:
-
-./ist-kvs jobs 2 4
-
-Output (jobs/test.out):
-
-[(key1,KVSERROR)]
-[(key1,value1)(key2,value2)]
-[(key2,value2)]
-Backup created: jobs/test-1.bck
-
-Grade
-
-Score: 18.86/20
-This project was graded 18.86/20, demonstrating a strong implementation of the IST-KVS system.
-
-
+MIT License
